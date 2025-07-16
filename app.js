@@ -13,31 +13,40 @@ const allowedOrigins = [
   'https://frontend-md-ytjd.vercel.app',
   'https://frontend-oficial-alpha.vercel.app',
   'https://frontend-oficial-h83m88c1b-emmanuels-projects-ad5ae683.vercel.app',
-  'https://frontend-oficial-emmanuels-projects-ad5ae683.vercel.app'
+  'https://frontend-oficial-emmanuels-projects-ad5ae683.vercel.app',
+  'https://frontend-oficial-ly3pcikbh-emmanuels-projects-ad5ae683.vercel.app' // AGREGA ESTE
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log('CORS Origin:', origin); // PARA DEPURACIÓN
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('No permitido por CORS'));
+      callback(new Error('No permitido por CORS: ' + origin));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'] 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: false, // manejar preflight correctamente
+  optionsSuccessStatus: 204  // para asegurar compatibilidad con algunos navegadores
 };
 
+// Middleware CORS
 app.use(cors(corsOptions));
 
+// Middleware para que los preflight OPTIONS respondan correctamente
 app.options('*', cors(corsOptions));
 
+// Body parsers
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
 
+// Archivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Rutas
 const authRoutes = require('./app/routes/authRoutes');
 const usuarioRoutes = require('./app/routes/usuarioRoutes');
 const itemsRoutes = require('./app/routes/items');
