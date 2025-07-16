@@ -3,7 +3,6 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const authMiddleware = require('../middlewares/auth');
 
-router.post('/register', authController.registerPublicUser);
 
 router.post('/register-admin', authMiddleware, authController.registerAdmin);
 

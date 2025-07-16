@@ -19,8 +19,10 @@ const allowedOrigins = [
   'https://frontend-oficial-ly3pcikbh-emmanuels-projects-ad5ae683.vercel.app',
   'https://frontend-oficial-ad2xmwxg9-emmanuels-projects-ad5ae683.vercel.app',
   'https://frontend-oficial-8g706hsjc-emmanuels-projects-ad5ae683.vercel.app',
-  'https://frontend-oficial-bszdjnuhp-emmanuels-projects-ad5ae683.vercel.app'
+  'https://frontend-oficial-bszdjnuhp-emmanuels-projects-ad5ae683.vercel.app',
+  'http://frontend-oficial-bszdjnuhp-emmanuels-projects-ad5ae683.vercel.app'
 ];
+
 
 const corsOptions = {
   origin: function (origin, callback) {

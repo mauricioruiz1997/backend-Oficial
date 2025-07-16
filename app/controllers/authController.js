@@ -19,30 +19,7 @@ const generarToken = (usuario) => {
 
 
 
-exports.registerPublicUser = async (req, res) => {
-  try {
-    const { name, email, password, tel } = req.body;
 
-    const existe = await Usuario.findOne({ email });
-    if (existe) {
-      return res.status(400).json({ message: 'Correo ya registrado' });
-    }
-
-    const nuevoUsuario = new Usuario({
-      name,
-      email,
-      password,
-      tel,
-      rol: 'user'
-    });
-
-    await nuevoUsuario.save();
-
-    res.status(201).json({ message: 'Usuario registrado correctamente' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al registrar usuario', error });
-  }
-};
 
 exports.registerAdmin = async (req, res) => {
   try {
@@ -62,7 +39,7 @@ exports.registerAdmin = async (req, res) => {
       email,
       password,
       tel,
-      rol: 'admin'
+      rol: 'admin' || 'user'
     });
 
     await nuevoAdmin.save();
@@ -72,6 +49,10 @@ exports.registerAdmin = async (req, res) => {
     res.status(500).json({ message: 'Error al registrar administrador', error });
   }
 };
+
+
+
+
 
 exports.login = async (req, res) => {
   try {
