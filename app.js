@@ -14,6 +14,7 @@ const allowedOrigins = [
   'https://frontend-materials-dispenser.vercel.app',
   'https://frontend-md-ytjd.vercel.app',
   'https://frontend-oficial-alpha.vercel.app'
+  'https://frontend-oficial-h83m88c1b-emmanuels-projects-ad5ae683.vercel.app/'
 ];
 
 
