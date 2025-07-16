@@ -3,8 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-
-
 const app = express();
 
 const allowedOrigins = [ 
@@ -13,10 +11,9 @@ const allowedOrigins = [
   'http://localhost:8100',
   'https://frontend-materials-dispenser.vercel.app',
   'https://frontend-md-ytjd.vercel.app',
-  'https://frontend-oficial-alpha.vercel.app'
-  'https://frontend-oficial-h83m88c1b-emmanuels-projects-ad5ae683.vercel.app/'
+  'https://frontend-oficial-alpha.vercel.app',
+  'https://frontend-oficial-h83m88c1b-emmanuels-projects-ad5ae683.vercel.app' 
 ];
-
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -26,8 +23,9 @@ const corsOptions = {
       callback(new Error('No permitido por CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'] 
 };
 
 app.use(cors(corsOptions));
@@ -46,7 +44,6 @@ const historialRoutes = require('./app/routes/historialRoutes');
 const inventarioRoutes = require('./app/routes/inventarioRoutes');
 const uploadRoutes = require('./app/routes/uploadRoutes');
 const rutasProtegidas = require('./app/routes/guardRoutes');
-
 
 app.use('/api/uploads', uploadRoutes);
 app.use('/api', rutasProtegidas);
