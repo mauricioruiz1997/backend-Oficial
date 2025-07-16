@@ -1,39 +1,15 @@
 const app = require('./app');
 const mongoose = require('mongoose');
-const http = require('http');
-const { Server } = require('socket.io');
 require('dotenv').config();
 
 const DB_URL = process.env.DB_URL;
-const PORT = process.env.PORT ;
-
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-});
-
-io.on('connection', (socket) => {
-  console.log('⚡ Cliente conectado:', socket.id);
-
-  socket.on('disconnect', () => {
-    console.log('⚡ Cliente desconectado:', socket.id);
-  });
-});
-
-const notificacionesRoutes = require('./app/routes/notificacionesRoutes')(io);
-app.use('/api/notificaciones', notificacionesRoutes);
+const PORT = process.env.PORT;
 
 mongoose.connect(DB_URL)
   .then(() => {
     console.log('✅ Conectado a MongoDB');
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en hhttp://0.0.0.0:${PORT}`);
-    });
-    server.listen(PORT + 1, () => {
-      console.log(`⚡ Socket.IO escuchando en puerto ${PORT + 1}`);
+      console.log(`🚀 Servidor corriendo en http://0.0.0.0:${PORT}`);
     });
   })
   .catch((error) => {
