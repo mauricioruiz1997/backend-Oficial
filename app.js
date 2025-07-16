@@ -7,13 +7,15 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const allowedOrigins = [
+const allowedOrigins = [ 
   'capacitor://localhost',
   'http://localhost',
   'http://localhost:8100',
   'https://frontend-materials-dispenser.vercel.app',
-  'https://frontend-md-ytjd.vercel.app' 
+  'https://frontend-md-ytjd.vercel.app',
+  'https://frontend-oficial-alpha.vercel.app'
 ];
+
 
 const corsOptions = {
   origin: function (origin, callback) {
