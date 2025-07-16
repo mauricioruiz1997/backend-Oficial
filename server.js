@@ -5,7 +5,7 @@ const { Server } = require('socket.io');
 require('dotenv').config();
 
 const DB_URL = process.env.DB_URL;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT ;
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -30,7 +30,7 @@ mongoose.connect(DB_URL)
   .then(() => {
     console.log('✅ Conectado a MongoDB');
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+      console.log(`🚀 Servidor corriendo en hhttp://0.0.0.0:${PORT}`);
     });
     server.listen(PORT + 1, () => {
       console.log(`⚡ Socket.IO escuchando en puerto ${PORT + 1}`);
