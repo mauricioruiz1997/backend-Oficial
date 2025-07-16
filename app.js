@@ -14,7 +14,8 @@ const allowedOrigins = [
   'https://frontend-oficial-alpha.vercel.app',
   'https://frontend-oficial-h83m88c1b-emmanuels-projects-ad5ae683.vercel.app',
   'https://frontend-oficial-emmanuels-projects-ad5ae683.vercel.app',
-  'https://frontend-oficial-ly3pcikbh-emmanuels-projects-ad5ae683.vercel.app' // AGREGA ESTE
+  'https://frontend-oficial-ly3pcikbh-emmanuels-projects-ad5ae683.vercel.app',
+  'https://frontend-oficial-ad2xmwxg9-emmanuels-projects-ad5ae683.vercel.app'
 ];
 
 const corsOptions = {
