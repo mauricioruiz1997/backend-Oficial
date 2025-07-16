@@ -10,7 +10,7 @@ exports.subirArchivos = (req, res) => {
 
     const archivos = req.files.map(file => ({
         filename: file.filename,
-        url: `https://frontend-oficial-alpha.vercel.app/uploads/${file}`
+        url: `https://backend-oficial-env.up.railway.app/uploads/${file}`
     }));
 
     res.json({
