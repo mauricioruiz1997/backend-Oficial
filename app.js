@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 
@@ -32,24 +34,20 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
-  preflightContinue: false, // manejar preflight correctamente
-  optionsSuccessStatus: 204  // para asegurar compatibilidad con algunos navegadores
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
-// Middleware CORS
+app.use(helmet());
 app.use(cors(corsOptions));
-
-// Middleware para que los preflight OPTIONS respondan correctamente
 app.options('*', cors(corsOptions));
+app.use(morgan('dev'));
 
-// Body parsers
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
 
-// Archivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Rutas
 const authRoutes = require('./app/routes/authRoutes');
 const usuarioRoutes = require('./app/routes/usuarioRoutes');
 const itemsRoutes = require('./app/routes/items');
@@ -58,12 +56,16 @@ const inventarioRoutes = require('./app/routes/inventarioRoutes');
 const uploadRoutes = require('./app/routes/uploadRoutes');
 const rutasProtegidas = require('./app/routes/guardRoutes');
 
-app.use('/api/uploads', uploadRoutes);
-app.use('/api', rutasProtegidas);
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/items', itemsRoutes);
 app.use('/api/inventario', inventarioRoutes);
 app.use('/api/historial', historialRoutes);
+app.use('/api/uploads', uploadRoutes);
+app.use('/api', rutasProtegidas);
+
+app.get('/', (req, res) => {
+  res.json({ message: 'API de Meterials-Dispenser funcionando correctamente.' });
+});
 
 module.exports = app;
