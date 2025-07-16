@@ -22,7 +22,7 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    console.log('CORS Origin:', origin); // PARA DEPURACIÓN
+    console.log('CORS Origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
