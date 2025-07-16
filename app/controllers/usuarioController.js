@@ -35,7 +35,7 @@ exports.createUser = async (req, res) => {
         }
 
         const imagenes = files.map(file => ({
-            url: `http://localhost:3001/uploads/${file.filename}`
+            url: `https://backend-oficial-env.up.railway.app/uploads/${file.filename}`
         }));
 
             const newUser = new Usuario({
